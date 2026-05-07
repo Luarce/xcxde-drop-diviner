@@ -56,7 +56,7 @@
   },
   "overridesComment": "https://github.com/wasm-bindgen/wasm-pack/issues/1522",
   "overrides": {
-    "axios": "1.15.0",
+    "axios": "1.16.0",
     "binary-install": {
       "tar": "7.5.13",
       "rimraf": "6.1.3"
