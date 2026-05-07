@@ -55,7 +55,7 @@ You should have the site running locally at `localhost:5173`.
 "js/ts.preferences.autoImportSpecifierExcludeRegexes": ["^@mui/[^/]+$"],
 "js/ts.preferences.importModuleSpecifier": "non-relative",
 "[html]": {
-  "editor.defaultFormatter": "vscode.html-language-features",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
 },
 "[rust]": {
   "editor.defaultFormatter": "rust-lang.rust-analyzer",
@@ -85,7 +85,7 @@ To add a translation
 2. Update the translation file for your target language
 3. Update `uiTranslated` to `true` for your target language in [languages.ts](src/common/languages.ts) (this changes the icon next to the language in the UI to a green checkmark)
 4. Update the `"Loading Data..."` string in [index.html](index.html) for your target language (this displays before i18next loads, so it has to be handled separately)
-5. Submit a Pull Request.
+5. Submit a Pull Request
 
 The [i18next](https://www.i18next.com/) documentation may prove helpful, though it largely targets the development aspect.
 
