@@ -1,6 +1,6 @@
 {
   "name": "xcxde-drop-diviner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "build-wasm": "wasm-pack build ./wasm-rs --target web",
