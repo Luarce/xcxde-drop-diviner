@@ -5,6 +5,7 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+import prettierEslint from "eslint-plugin-prettier/recommended";
 
 export default defineConfig([
   globalIgnores(["coverage", "dist", "wasm-rs"]),
@@ -16,6 +17,7 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
       jsdoc.configs["flat/recommended-typescript-error"],
+      prettierEslint,
     ],
     languageOptions: {
       parserOptions: {

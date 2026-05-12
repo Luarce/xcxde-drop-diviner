@@ -1,4 +1,4 @@
-name: Deploy Static Content to Pages
+name: Deploy and Release
 
 on:
   push:
@@ -14,7 +14,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run CI
+        uses: ./.github/workflows/ci.yaml
   deploy:
+    needs: ci
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -22,10 +28,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
       - name: Verify Tag is at origin/main
         run: |
+          git fetch origin main
           if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
             echo "Tag is not at origin/main, skipping deploy."
             exit 1
@@ -43,7 +48,7 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Setup Pages
+      - name: Set Up GitHub Pages
         uses: actions/configure-pages@v6
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v5
@@ -52,3 +57,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+      - name: Create Release
+        uses: softprops/action-gh-release@v3
+        with:
+          generate_release_notes: true
